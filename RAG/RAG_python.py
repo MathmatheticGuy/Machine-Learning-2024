@@ -1,21 +1,18 @@
 #%% md
 # # Tải Các Thư viện Cần Thiết
 #%%
-!sudo apt-get update -y
-!sudo apt-get install python3.11 python3.11-dev python3.11-distutils libpython3.11-dev
+sudo apt-get update -y
+sudo apt-get install python3.11 python3.11-dev python3.11-distutils libpython3.11-dev
 #%%
 # Perform Google Colab installs (if running in Google Colab)
 import os
-
-if "COLAB_GPU" in os.environ:
-    print("[INFO] Running in Google Colab, installing requirements.")
-    !pip install -U torch # requires torch 2.1.1+ (for efficient sdpa implementation)
-    !pip install PyMuPDF # for reading PDFs with Python
-    !pip install tqdm # for progress bars
-    !pip install sentence-transformers # for embedding models
-    !pip install accelerate # for quantization model loading
-    !pip install bitsandbytes # for quantizing models (less storage space)
-    !pip install flash-attn --no-build-isolation # for faster attention mechanism = faster LLM inference
+import torch # requires torch 2.1.1+ (for efficient sdpa implementation)
+import PyMuPDF # for reading PDFs with Python
+import tqdm # for progress bars
+import sentence-transformers # for embedding models
+import accelerate # for quantization model loading
+import bitsandbytes # for quantizing models (less storage space)
+import flash-attn --no-build-isolation # for faster attention mechanism = faster LLM inference
 #%% md
 # # Tải Văn Bản PDF từ trên Mạng
 #%%
@@ -51,17 +48,17 @@ else:
   print(f"File {pdf_path} exists.")
 #%%
 # Make sure you have "Desktop development with C++" workload installed in Visual Studio Installer
-!pip install pymupdf
-!pip install fitz
+pip install pymupdf
+pip install fitz
 #%% md
 # 
 #%%
 # Run this is you got ModuleNotFoundError: No module named 'frontend'
-!pip install --force-reinstall pymupdf
+pip install --force-reinstall pymupdf
 #%%
-# Requires !pip install PyMuPDF, see: https://github.com/pymupdf/pymupdf
+# Requires pip install PyMuPDF, see: https://github.com/pymupdf/pymupdf
 import fitz # (pymupdf, found this is better than pypdf for our use case, note: licence is AGPL-3.0, keep that in mind if you want to use any code commercially)
-from tqdm.auto import tqdm # for progress bars, requires !pip install tqdm
+from tqdm.auto import tqdm # for progress bars, requires pip install tqdm
 
 def text_formatter(text: str) -> str:
     """Performs minor formatting on text."""
@@ -206,9 +203,9 @@ for row in df[df["chunk_token_count"] <= min_token_length].sample(5).iterrows():
 pages_and_chunks_over_min_token_len = df[df["chunk_token_count"] > min_token_length].to_dict(orient="records")
 pages_and_chunks_over_min_token_len[:2]
 #%%
-!pip install --upgrade torch torchvision transformers
+pip install --upgrade torch torchvision transformers
 #%%
-# Requires !pip install sentence-transformers
+# Requires pip install sentence-transformers
 from sentence_transformers import SentenceTransformer
 
 embedding_model = SentenceTransformer(model_name_or_path="all-mpnet-base-v2",
@@ -218,7 +215,7 @@ embedding_model = SentenceTransformer(model_name_or_path="all-mpnet-base-v2",
 sentences = [
     "The Sentences Transformers library provides an easy and open-source way to create embeddings.",
     "Sentences can be embedded one by one or as a list of strings.",
-    "Embeddings are one of the most powerful concepts in machine learning!",
+    "Embeddings are one of the most powerful concepts in machine learning",
     "Learn to use embeddings well and you'll be well on your way to being an AI engineer."
 ]
 
@@ -232,7 +229,7 @@ for sentence, embedding in embeddings_dict.items():
     print("Embedding:", embedding)
     print("")
 #%%
-single_sentence = "Yo! Thành is a nice"
+single_sentence = "Yo Thành is a nice"
 single_embedding = embedding_model.encode(single_sentence)
 print(f"Sentence: {single_sentence}")
 print(f"Embedding:\n{single_embedding}")
@@ -475,7 +472,7 @@ scores, indices
 print_top_results_and_scores(query=query,
                              embeddings=embeddings)
 #%%
-!nvidia-smi
+nvidia-smi
 #%%
 # Get GPU available memory
 import torch
@@ -510,15 +507,15 @@ from huggingface_hub import notebook_login
 notebook_login()
 #%%
 # Install these if not already
-# !pip install bitsandbytes
-# !pip install huggingface_hub
+# pip install bitsandbytes
+# pip install huggingface_hub
 #%%
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from transformers.utils import is_flash_attn_2_available
 
 # 1. Create quantization config for smaller model loading (optional)
-# Requires !pip install bitsandbytes accelerate, see: https://github.com/TimDettmers/bitsandbytes, https://huggingface.co/docs/accelerate/
+# Requires pip install bitsandbytes accelerate, see: https://github.com/TimDettmers/bitsandbytes, https://huggingface.co/docs/accelerate/
 # For models that require 4-bit quantization (use this if you have low GPU memory available)
 from transformers import BitsAndBytesConfig
 quantization_config = BitsAndBytesConfig(load_in_4bit=True,
@@ -526,7 +523,7 @@ quantization_config = BitsAndBytesConfig(load_in_4bit=True,
 
 # Bonus: Setup Flash Attention 2 for faster inference, default to "sdpa" or "scaled dot product attention" if it's not available
 # Flash Attention 2 requires NVIDIA GPU compute capability of 8.0 or above, see: https://developer.nvidia.com/cuda-gpus
-# Requires !pip install flash-attn, see: https://github.com/Dao-AILab/flash-attention
+# Requires pip install flash-attn, see: https://github.com/Dao-AILab/flash-attention
 if (is_flash_attn_2_available()) and (torch.cuda.get_device_capability(0)[0] >= 8):
   attn_implementation = "flash_attention_2"
 else:
