@@ -499,7 +499,7 @@ elif gpu_memory_gb > 19.0:
 print(f"use_quantization_config set to: {use_quantization_config}")
 print(f"model_id set to: {model_id}")
 #%% md
-# ### Connect and Verify Model from Hugging Face
+# ### Connect and Verify Machine Learning Models from Hugging Face
 #%%
 from huggingface_hub import notebook_login
 

@@ -1,0 +1,19 @@
+# Core libraries
+# os
+# shutil
+# random
+
+# YOLOv5 dependencies (from the official YOLOv5 repository)
+torch>=1.7.0
+opencv-python>=4.1.1
+matplotlib>=3.2.2
+numpy>=1.18.5
+Pillow>=7.1.2
+pandas>=1.1.4
+tqdm>=4.41.0
+seaborn>=0.11.0
+scipy>=1.4.1
+tensorboard>=2.4.1
+
+# Additional tools
+jupyter
