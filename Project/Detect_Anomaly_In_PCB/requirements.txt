@@ -1,8 +1,3 @@
-# Core libraries
-# os
-# shutil
-# random
-
 # YOLOv5 dependencies (from the official YOLOv5 repository)
 torch>=1.7.0
 opencv-python>=4.1.1

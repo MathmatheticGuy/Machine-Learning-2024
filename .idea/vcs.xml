@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Project/Tools/XmlToTxt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project/_Models/yolov5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project/_Tools/XmlToTxt" vcs="Git" />
   </component>
 </project>

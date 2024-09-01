@@ -1,0 +1,8 @@
+dataset-pcb/images/
+dataset-pcb/images/train
+dataset-pcb/images/val
+
+dataset-pcb/labels/train
+dataset-pcb/labels/val
+dataset-pcb/labels/train.cache
+dataset-pcb/labels/val.cache
