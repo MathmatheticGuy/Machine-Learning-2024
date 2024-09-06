@@ -43,10 +43,10 @@ datasets = [
     (no_structure, {}),
 ]
 
-# Extract the noisy_circles dataset from the datasets list
+# Extract the noisy_circles dataset-pcb from the datasets list
 X, y = datasets[0][0]
 
-# Normalize dataset for easier parameter selection
+# Normalize dataset-pcb for easier parameter selection
 X = StandardScaler().fit_transform(X)
 
 # Apply DBSCAN

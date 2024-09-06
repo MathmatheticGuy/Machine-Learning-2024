@@ -108,13 +108,13 @@ datasets = [
 ]
 
 for i_dataset, (dataset, algo_params) in enumerate(datasets):
-    # update parameters with dataset-specific values
+    # update parameters with dataset-pcb-specific values
     params = default_base.copy()
     params.update(algo_params)
 
     X, y = dataset
 
-    # normalize dataset for easier parameter selection
+    # normalize dataset-pcb for easier parameter selection
     X = StandardScaler().fit_transform(X)
 
     # estimate bandwidth for mean shift

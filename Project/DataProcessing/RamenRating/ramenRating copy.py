@@ -15,12 +15,12 @@ from sklearn.utils import class_weight
 
 #%%
 def load_data(filepath):
-    """Load the dataset from a CSV file."""
+    """Load the dataset-pcb from a CSV file."""
     return pd.read_csv(filepath)
 
 
 def preprocess_data(data):
-    """Preprocess the dataset."""
+    """Preprocess the dataset-pcb."""
     data['Top Ten'] = data['Top Ten'].replace('\n', np.NaN)
     data['isTopTen'] = data['Top Ten'].apply(lambda x: 0 if str(x) == 'nan' else 1)
     data = data.drop(['Top Ten', 'Review #'], axis=1)

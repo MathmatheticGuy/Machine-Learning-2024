@@ -47,7 +47,7 @@ scaler = MinMaxScaler()
 
 df_scaled = scaler.fit_transform(df)
 scaled_data_list = np.array(df_scaled)  # convert to numpy array for ML
-print('dataset:', df_scaled)
+print('dataset-pcb:', df_scaled)
 
 
 class KMeansClustering:
